@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="col">
+        <ng-container *ngIf="(machines$ | async) as items">
+            <div class="row" *ngIf="items.length > 0; else noItems" data-test="list" aria-label="List of machines"
+                role="list">
+                <app-machine-list-item class="col-12" *ngFor="let item of items" [machine]="item"
+                    (itemClicked)="focusOn(item.id)" data-test="list-item">
+                </app-machine-list-item>
+            </div>
+        </ng-container>
+    </div>
+    <app-machine-history class="col" *ngIf="(focusedMachine$ | async) as item" [machine]="item"
+        data-test="history"></app-machine-history>
+</div>
+
+<ng-template #noItems>
+    <p data-test="no-items-alert">No machines to show</p>
+</ng-template>

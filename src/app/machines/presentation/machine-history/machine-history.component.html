@@ -1,0 +1,19 @@
+<div class="card w-100 px-4 py-3 text-white" style="background-color: #424242;" data-test="card" role="region"
+    aria-labelledby="card-title">
+    <div class="card-body">
+        <h2 id="card-title" class="card-title mb-4" data-test="card-title">{{machine.name}}</h2>
+        <h4 class="card-subtitle fw-semibold">Status</h4>
+        <p class="card-text fs-5 ms-5" [ngClass]="machine.status === 'ON' ? 'text-success' : 'text-danger'"
+            data-test="status">
+            {{machine.status | uppercase}}
+        </p>
+        <h4 class="card-subtitle fw-semibold">Statuses ({{machine.history.length}})</h4>
+        <p *ngFor="let item of machine.history" class="card-text fs-5 ms-5 my-0" data-test="history">
+            <span class="d-inline-block" [ngClass]="item.status === 'ON' ? 'text-success' : 'text-danger'"
+                style="width: 40px;">
+                {{item.status | uppercase}}
+            </span>
+            {{item.time | date : 'mediumTime'}}
+        </p>
+    </div>
+</div>

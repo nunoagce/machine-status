@@ -1,0 +1,15 @@
+<div class="d-flex align-items-center my-3">
+    <div class="ms-4 me-5 position-relative" style="width: 150px;">
+        <button class="btn btn-lg btn-outline-light w-100 rounded-1" (click)="itemClicked.emit()" role="list-item"
+            tabindex="0">
+            {{machine.name}}
+        </button>
+        <span class="badge text-bg-info rounded-5 position-absolute top-0 start-100 translate-middle" data-test="badge">
+            {{machine.history.length}}
+        </span>
+    </div>
+    <span class="fs-3" [ngClass]="machine.status === 'ON' ? 'text-success' : 'text-danger'" data-test="status"
+        role="status" [attr.aria-label]="'machine' + machine.id + ' is ' + machine.status" aria-live="polite">
+        {{machine.status | uppercase}}
+    </span>
+</div>
